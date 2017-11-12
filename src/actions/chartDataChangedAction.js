@@ -1,5 +1,5 @@
 export const chartDataChangedAction = chartData => {
-	return {
+  return {
     type: 'CHART_DATA_CHANGED',
     payload: chartData
   }
