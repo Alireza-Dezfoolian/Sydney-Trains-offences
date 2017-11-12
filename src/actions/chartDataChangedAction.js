@@ -4,4 +4,3 @@ export const chartDataChangedAction = chartData => {
     payload: chartData
   }
 };
-
