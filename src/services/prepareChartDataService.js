@@ -7,7 +7,8 @@ function getArraysKeyInDescription(data, key) {
     while (i < data.length) {
       if (data[i] instanceof Object) {
         for (let o in data[i]) {
-          res.push(data[i][o].filter(x => x[key])[0][key]);
+          const value = data[i][o].filter(x => x[key]);
+          res.push(value && value[0] && value[0][key]);
         }
       }
       i++;
