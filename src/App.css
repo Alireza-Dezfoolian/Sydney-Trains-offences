@@ -1,0 +1,64 @@
+.chart {
+  margin: 20px auto;
+}
+
+.c3-shape.c3-line {
+  fill: none;
+}
+
+.c3-title {
+  font-weight: bold;
+  font-size: 16px;
+  transform: translateX(36px);
+}
+
+.button {
+  background: none;
+  color: #eee;
+  cursor: pointer;
+  border: 1px solid #eee;
+  outline: none;
+  box-shadow: none;
+  background-color: black;
+  padding: 6px 10px;
+  margin: 4px;
+}
+
+.total-wrapper {
+  float: right;
+  font-size: 10px;
+}
+
+.total-wrapper .total {
+  padding: 4px 10px;
+  border: 1px solid black;
+}
+
+.total-wrapper table {
+  border-collapse: collapse;
+}
+
+.button:hover, .button.active {
+  color: black;
+  border: 1px solid black;
+  background-color: #eee;
+}
+
+.button.active {
+  pointer-events: none;
+}
+
+.loading {
+  margin: 120px auto;
+  width: 10%;
+}
+
+.button-wrapper {
+  float: left;
+  margin-top: 40px;
+  margin-left: 100px;
+}
+
+.c3-legend-item {
+  transform: translate(10px, 10px);
+}
