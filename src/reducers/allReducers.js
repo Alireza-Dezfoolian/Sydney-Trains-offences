@@ -3,8 +3,8 @@ import { getChartDataReducer } from './getChartDataReducer';
 import { switchChartDataReducer } from './switchChartDataReducer';
 
 const allReducers = combineReducers({
-	chartData: getChartDataReducer,
-	switchChartData: switchChartDataReducer
+  chartData: getChartDataReducer,
+  switchChartData: switchChartDataReducer
 });
 
 export default allReducers;

@@ -161,9 +161,9 @@ const store = mockStore({
 describe('renders without crashing', () => {
 
   beforeEach(() => {
-    wrapper = mount( 
-      <Provider store = { store } >
-        <App / >
+    wrapper = mount(
+      <Provider store={store} >
+        <App />
       </Provider>
     );
   });

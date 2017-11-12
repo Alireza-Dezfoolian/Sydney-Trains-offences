@@ -10,17 +10,17 @@ import allReducers from './reducers/allReducers';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
-	allReducers,
-	applyMiddleware(thunk)
+  allReducers,
+  applyMiddleware(thunk)
 );
 
 store.dispatch(chartAction.getChartData());
 
 ReactDOM.render(
-	<Provider store={store}>
-	  <App />
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 
 registerServiceWorker();
