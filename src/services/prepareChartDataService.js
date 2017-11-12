@@ -2,12 +2,16 @@ import { chartSetting } from '../chartSetting';
 
 function getArraysKeyInDescription(data, key) {
   let res = [];
-  let i = 0;
-  while (i < data.length) {
-    for (let o in data[i]) {
-      res.push(data[i][o].filter(x => x[key])[0][key]);
+  if (Array.isArray(data) && data && key) {
+    let i = 0;
+    while (i < data.length) {
+      if (data[i] instanceof Object) {
+        for (let o in data[i]) {
+          res.push(data[i][o].filter(x => x[key])[0][key]);
+        }
+      }
+      i++;
     }
-    i++;
   }
   return res;
 }
@@ -43,8 +47,8 @@ export function getTotal(data, type) {
 }
 
 export function numberFormater(num, sign) {
-  var p = num.toFixed(0).split('.');
-  return (sign ? sign : '') + p[0].split('').reverse().reduce((acc, num, i, orig) => {
+  const n = num.toFixed(0).split('.');
+  return (sign ? sign : '') + n[0].split('').reverse().reduce((acc, num, i, orig) => {
     return num === '-' ? acc : num + (i && !(i % 3) ? ',' : '') + acc;
   }, '');
 }
@@ -70,4 +74,3 @@ export function prepareChartData(data, type) {
     return combineSettings(preparedChartData);
   }
 }
-
