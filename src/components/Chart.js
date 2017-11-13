@@ -14,6 +14,9 @@ class Chart extends Component {
     this.state = { dataType: chartSetting.buttons && chartSetting.buttons[0], filteredData: [] };
     this.onClick = this.onClick.bind(this);
     this.dispatchValue = this.dispatchValue.bind(this);
+  }
+
+  componentDidMount() {
     this.dispatchValue();
   }
 
