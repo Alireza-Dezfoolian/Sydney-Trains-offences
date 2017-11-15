@@ -22,7 +22,7 @@ function combineSettings(data) {
 }
 
 function getCategories(data, category) {
-  if (data && data[0] && category) {
+  if (Array.isArray(data) && category) {
     return Object.keys(data[0][category][0]);
   }
 }
@@ -32,10 +32,10 @@ function sumArrayVales(arr) {
 }
 
 export function getTotal(data, type) {
-  const result = [];
-  let sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.currencySign : '';
-  let total = 0;
   if (data && type) {
+  const result = [];
+  const sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.currencySign : '';
+  let total = 0;
     for (let i = 0; i < data.length; i++) {
       const key = [data[i].year] + ' ' + chartSetting.total;
       const value = sumArrayVales(getArraysKeyInDescription(data[i]['offence category'], type));
@@ -64,9 +64,9 @@ export function setAxis(data, type) {
 }
 
 export function prepareChartData(data, type) {
-  const preparedChartData = {};
-  preparedChartData['columns'] = [];
-  if (data) {
+  if (data && type) {
+    const preparedChartData = {};
+    preparedChartData['columns'] = [];
     for (let i = 0; i < data.length; i++) {
       preparedChartData['columns'].push([data[i].year]);
       preparedChartData['columns'][i] = preparedChartData['columns'][i]
