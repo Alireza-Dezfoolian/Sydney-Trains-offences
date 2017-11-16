@@ -1,9 +1,12 @@
 import { chartSetting } from '../chartSetting';
 
+const keys = Object.keys;
+const assign = Object.assign;
+const isArray = Array.isArray;
+
 function getArraysKeyInDescription(data, key) {
-  let res = [];
-  if (Array.isArray(data) && data && key) {
-    let i = 0;
+  if (isArray(data) && data && key) {
+    let res = [], i = 0;
     while (i < data.length) {
       if (data[i] instanceof Object) {
         for (let o in data[i]) {
@@ -13,17 +16,17 @@ function getArraysKeyInDescription(data, key) {
       }
       i++;
     }
+    return res;
   }
-  return res;
 }
 
 function combineSettings(data) {
-  return Object.assign(chartSetting.c3Setting, data);
+  return assign(chartSetting.c3Setting, data);
 }
 
 function getCategories(data, category) {
-  if (Array.isArray(data) && category) {
-    return Object.keys(data[0][category][0]);
+  if (isArray(data) && category) {
+    return keys(data[0][category][0]);
   }
 }
 
@@ -33,32 +36,31 @@ function sumArrayVales(arr) {
 
 export function getTotal(data, type) {
   if (data && type) {
-  const result = [];
-  const sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.currencySign : '';
-  let total = 0;
-    for (let i = 0; i < data.length; i++) {
-      const key = [data[i].year] + ' ' + chartSetting.total;
-      const value = sumArrayVales(getArraysKeyInDescription(data[i]['offence category'], type));
-      result.push(key, numberFormater(value, sign));
-      total += value;
-    }
-    result.push(chartSetting.grandTotal, numberFormater(total, sign));
-    return [result];
+    const result = [], sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.currencySign : '';
+    let total = 0;
+      for (let i = 0; i < data.length; i++) {
+        const key = [data[i].year] + ' ' + chartSetting.total;
+        const value = sumArrayVales(getArraysKeyInDescription(data[i]['offence category'], type));
+        result.push(key, numberFormatter(value, sign));
+        total += value;
+      }
+      result.push(chartSetting.grandTotal, numberFormatter(total, sign));
+      return [result];
   }
 }
 
-export function numberFormater(num, sign) {
-  const n = num.toFixed(0).split('.');
+export function numberFormatter(number, sign) {
+  const n = number.toFixed(0).split('.');
   return (sign ? sign : '') + n[0].split('').reverse().reduce((acc, num, i, orig) => {
     return num === '-' ? acc : num + (i && !(i % 3) ? ',' : '') + acc;
   }, '');
 }
 
 export function setAxis(data, type) {
-  const sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.axisCurrencySign : '';
-  const newAxis = Object.assign({}, chartSetting.c3SetAxis);
+  const sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.axisCurrencySign : '',
+  newAxis = assign({}, chartSetting.c3SetAxis);
   newAxis.x.categories = getCategories(data, 'offence category');
-  newAxis.y.tick.format = d => numberFormater(d);
+  newAxis.y.tick.format = d => numberFormatter(d);
   newAxis.y.label.text = sign;
   return newAxis;
 }
