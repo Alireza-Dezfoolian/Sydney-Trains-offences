@@ -11,7 +11,7 @@ import Toggle from './Toggle';
 class Chart extends Component {
   constructor(props) {
     super(props);
-    this.state = { dataType: chartSetting.buttons && chartSetting.buttons[0], filteredData: [] };
+    this.state = { dataType: chartSetting.buttons && chartSetting.buttons[0]};
     this.onClick = this.onClick.bind(this);
     this.dispatchValue = this.dispatchValue.bind(this);
   }
@@ -33,7 +33,6 @@ class Chart extends Component {
     if (this.props.data) {
       const data = this.props.data;
       const total = getTotal(data.sydney_trains_offences, this.state.dataType);
-      let filteredData = [];
       return (
         <section>
           <C3Chart
@@ -44,8 +43,7 @@ class Chart extends Component {
           <Toggle buttons={chartSetting.buttons}
             onClick={this.onClick}
             dataType={this.state.dataType} />
-          <Total total={total}
-            filteredData={filteredData} />
+          <Total total={total}/>
         </section>
       )
     } else {

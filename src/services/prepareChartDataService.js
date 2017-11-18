@@ -26,7 +26,7 @@ function combineSettings(data) {
 
 function getCategories(data, category) {
   if (isArray(data) && category) {
-    return keys(data[0][category][0]);
+    return keys(data[0][category] && data[0][category][0]);
   }
 }
 

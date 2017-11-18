@@ -158,7 +158,7 @@ const store = mockStore({
   ]
 });
 
-describe('renders without crashing', () => {
+describe('WHEN ChartApplication run', () => {
 
   beforeEach(() => {
     wrapper = mount(

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { getChartDataReducer } from './getChartDataReducer';
-import { switchChartDataReducer } from './switchChartDataReducer';
+import { changeChartDataReducer } from './changeChartDataReducer';
 
 const allReducers = combineReducers({
   chartData: getChartDataReducer,
-  switchChartData: switchChartDataReducer
+  changeChartData: changeChartDataReducer
 });
 
 export default allReducers;

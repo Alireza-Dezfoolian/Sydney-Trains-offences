@@ -7,7 +7,7 @@ export const chartSetting = {
   buttons: ['Number of PNs', 'Face Values'],
   useCurrencySign: ['Face Values'],
   currencySign: '$',
-  axisCurrencySign: '$ (AUD)',
+  axisCurrencySign: '$(AUD)',
   c3Setting: {
     type: 'bar'
   },

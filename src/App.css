@@ -24,6 +24,16 @@
   margin: 4px;
 }
 
+.button:hover, .button.active {
+  color: black;
+  border: 1px solid black;
+  background-color: #eee;
+}
+
+.button.active {
+  pointer-events: none;
+}
+
 .total-wrapper {
   float: right;
   font-size: 10px;
@@ -36,16 +46,6 @@
 
 .total-wrapper table {
   border-collapse: collapse;
-}
-
-.button:hover, .button.active {
-  color: black;
-  border: 1px solid black;
-  background-color: #eee;
-}
-
-.button.active {
-  pointer-events: none;
 }
 
 .loading {
