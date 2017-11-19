@@ -30,7 +30,7 @@ function getCategories(data, category) {
   }
 }
 
-function sumArrayVales(arr) {
+function sumArrayValues(arr) {
   return arr.reduce((v, i) => (v + i));
 }
 
@@ -40,7 +40,7 @@ export function getTotal(data, type) {
     let total = 0;
       for (let i = 0; i < data.length; i++) {
         const key = [data[i].year] + ' ' + chartSetting.total;
-        const value = sumArrayVales(getArraysKeyInDescription(data[i]['offence category'], type));
+        const value = sumArrayValues(getArraysKeyInDescription(data[i]['offence category'], type));
         result.push(key, numberFormatter(value, sign));
         total += value;
       }
@@ -49,9 +49,9 @@ export function getTotal(data, type) {
   }
 }
 
-export function numberFormatter(number, sign) {
+export function numberFormatter(number, sign='') {
   const n = number.toFixed(0).split('.');
-  return (sign ? sign : '') + n[0].split('').reverse().reduce((acc, num, i, orig) => {
+  return sign + n[0].split('').reverse().reduce((acc, num, i, orig) => {
     return num === '-' ? acc : num + (i && !(i % 3) ? ',' : '') + acc;
   }, '');
 }

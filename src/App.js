@@ -5,7 +5,7 @@ import  Chart from './components/Chart';
 import { chartSetting } from './chartSetting';
 
 const App = props => {
-  const chartData = props.data.chartData;
+  const { chartData } = props.data;
   return (
     <div className="chart" style={{width : chartSetting.width}}>
       <Chart

@@ -31,19 +31,19 @@ class Chart extends Component {
 
   render() {
     if (this.props.data) {
-      const data = this.props.data;
+      const {data} = this.props;
       const total = getTotal(data.sydney_trains_offences, this.state.dataType);
       return (
         <section>
           <C3Chart
-            title={chartSetting.c3Title}
-            size={chartSetting.c3Size}
-            axis={setAxis(data.sydney_trains_offences, this.state.dataType)}
-            data={prepareChartData(data.sydney_trains_offences, this.state.dataType)} />
-          <Toggle buttons={chartSetting.buttons}
-            onClick={this.onClick}
-            dataType={this.state.dataType} />
-          <Total total={total}/>
+            title={ chartSetting.c3Title }
+            size={ chartSetting.c3Size }
+            axis={ setAxis(data.sydney_trains_offences, this.state.dataType) }
+            data={ prepareChartData(data.sydney_trains_offences, this.state.dataType) } />
+          <Toggle buttons={ chartSetting.buttons }
+            onClick={ this.onClick }
+            dataType={ this.state.dataType } />
+          <Total total={ total }/>
         </section>
       )
     } else {
