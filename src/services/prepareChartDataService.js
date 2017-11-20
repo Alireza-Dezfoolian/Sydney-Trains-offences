@@ -6,16 +6,12 @@ const isArray = Array.isArray;
 
 function getArraysKeyInDescription(data, key) {
   if (isArray(data) && data && key) {
-    let res = [], i = 0;
-    while (i < data.length) {
-      if (data[i] instanceof Object) {
-        for (let o in data[i]) {
-          const value = data[i][o].filter(x => x[key]);
-          res.push(value && value[0] && value[0][key]);
-        }
+    let res = [], i = -1;
+    while (++i < data.length) if (data[i] instanceof Object && data[i] !== null)
+      for (let o in data[i]) {
+        const value = data[i][o].filter(x => x[key]);
+        res.push(value && value[0] && value[0][key]);
       }
-      i++;
-    }
     return res;
   }
 }
@@ -31,14 +27,14 @@ function getCategories(data, category) {
 }
 
 function sumArrayValues(arr) {
-  return arr.reduce((v, i) => (v + i));
+  return arr.reduce((v, i) => v + i);
 }
 
 export function getTotal(data, type) {
   if (data && type) {
     const result = [], sign = chartSetting.useCurrencySign.includes(type) ? chartSetting.currencySign : '';
-    let total = 0;
-      for (let i = 0; i < data.length; i++) {
+    let total = 0, i = 0;
+      for (; i < data.length; i++) {
         const key = [data[i].year] + ' ' + chartSetting.total;
         const value = sumArrayValues(getArraysKeyInDescription(data[i]['offence category'], type));
         result.push(key, numberFormatter(value, sign));
